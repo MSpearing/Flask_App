@@ -4,6 +4,7 @@
 from flask import Flask
 from flask import url_for
 from flask import request
+from flask import render_template
 
 app = Flask(__name__)
 
@@ -51,3 +52,9 @@ def show_the_login_form():
 # Static files can be held in the "static" folder and referenced with the keyword below
 with app.test_request_context():
     print(url_for('static', filename='style.css'))
+
+# Rendering Templates - Based off of HTML formatting
+@app.route('/hello/')
+@app.route('/hello/<name>')
+def hello(name=None):
+    return render_template('Architect.html', name=name)
